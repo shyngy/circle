@@ -1,0 +1,28 @@
+.nav{
+    grid-area: n;
+    background-color: rgb(231, 230, 230);
+    height: 700px;
+
+    
+    
+}
+.nav ul li a{
+    margin-left: 10px;
+    text-decoration: none;
+    color: rgb(58, 48, 48);
+    
+}
+.nav__link:hover{
+
+    color: #797977;
+  
+}
+.nav ul li:first-child{
+    margin-top: 10px;
+}
+.item{
+    color: goldenrod;
+}
+.nav ul li a.acitve{
+    color: goldenrod;
+}

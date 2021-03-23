@@ -1,0 +1,19 @@
+.content{
+    color: rgb(150, 143, 134);
+
+}
+.item{
+    color: aqua;
+}
+
+.descriptionBlock, h3{
+    padding: 10px;
+}
+.btn{
+    margin: 5px;
+    display: inline-block;
+}
+
+.descriptionArea{
+    display: block;
+}

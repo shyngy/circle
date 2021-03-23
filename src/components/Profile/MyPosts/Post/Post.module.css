@@ -1,0 +1,26 @@
+.user{
+    color: blueviolet;
+    font-size: 20px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+
+}
+.like{
+    font-size: 20px;
+    color: goldenrod;
+}
+.user img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.descriptionBlock{
+    margin: 10px;
+}

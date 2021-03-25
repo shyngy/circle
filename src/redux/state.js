@@ -1,4 +1,4 @@
-import {renderEntireThee} from "../render";
+let renderEntireThee = () => {}
 
 let state = {
     profilePage:
@@ -8,6 +8,7 @@ let state = {
                 {id: 1, message: 'hello world', likeCount: 31},
                 {id: 2, message: 'it\'s my first post', likeCount: 3},
             ],
+            newPostText: 'typing '
 
         },
 
@@ -29,21 +30,29 @@ let state = {
 
 }
 
+window.state = state
 
-
-export const addPost = (postMessages) =>{
-
+export const addPost = () =>{
     let idUsers = state.profilePage.posts.length
     let userPost = {
         id: ++idUsers,
-        message: postMessages,
+        message: state.profilePage.newPostText,
         likeCount: (Math.random()*10).toFixed(0)
     }
     state.profilePage.posts.push(userPost)
-    renderEntireThee(state)
+    state.profilePage.newPostText = ''
+    renderEntireThee(state) // call a function after all changes
 
 
 }
+
+export const updateNewPostValue = (text)=>{
+    state.profilePage.newPostText = text
+    // console.log(text)
+    renderEntireThee(state) // call a function after all changes
+}
+
+export const subscribe = (observer) => renderEntireThee = observer
 
 
 export default state

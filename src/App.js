@@ -5,9 +5,6 @@ import Profile from './components/Profile/ProfileMain/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 
-
-
-
 const App = (props) => {
     return (
 
@@ -16,8 +13,10 @@ const App = (props) => {
                 <Navbar/>
                 <div className="content">
                     <Route path="/Profile" render={()=>{return <Profile
-                            posts={props.state.profilePage.posts}
+                            profilePage={props.state.profilePage}
                             addPost={props.addPost}
+                            updateNewPostValue={props.updateNewPostValue}
+
                     />}}
                     />
                     <Route path="/Dialogs" render={()=>{return(
@@ -32,6 +31,7 @@ const App = (props) => {
             </div>
 
     );
+
 }
 
 export default App;

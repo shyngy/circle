@@ -1,23 +1,25 @@
 import reportWebVitals from './reportWebVitals';
-import state, {subscribe} from "./redux/state";
+import store from "./redux/state";
 import ReactDOM from "react-dom";
 import App from "./App";
-import {addPost, updateNewPostValue} from "./redux/state";
+
 import React from 'react';
 import {BrowserRouter, Route} from "react-router-dom";
 
 let renderEntireThee = state => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} addPost={addPost} updateNewPostValue={updateNewPostValue}/>
+            <App state={state}
+                 addPost={store.addPost.bind(store)}
+                 updateNewPostValue={store.updateNewPostValue.bind(store)}/>
         </BrowserRouter>,
         document.getElementById('root')
     );
 }
 
-renderEntireThee(state)
+renderEntireThee(store.getState())
 
-subscribe(renderEntireThee)
+store.subscribe(renderEntireThee)
 
 
 

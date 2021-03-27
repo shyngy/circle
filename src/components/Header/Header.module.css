@@ -1,13 +1,45 @@
-header{
+.header{
     grid-area: h;
     background-color: rgb(231, 230, 230);
     position: relative;
   }
 .header__logo{
-  width: 50px;
-  margin-top: 5px;
+    width: 40px;
+    height: 40px;
+    margin: 8px 5px ;
+    background-color: goldenrod;
+    border-top:4px solid rgb(217, 80, 80);
+    border-radius: 50%;
+    position: relative;
+    border-right:4px solid rgb(217, 80, 80);
+
+
 }
-  
+.header__logo:after,.header__logo:before{
+    content: '';
+    position: absolute;
+    width: 31px;
+    height: 29px;
+    background-color: rgb(231, 230, 230);
+    border-radius: 50%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+}
+.header__logo:after{
+    top: -5px;
+    right: 0;
+}
+.header__logo:before{
+    bottom: 1px;
+    left: 4px;
+    width: 30px;
+    height: 28px;
+    background-color: rgb(217, 80, 80);
+}
 .header__word{
   display: inline-block;
   position: absolute;

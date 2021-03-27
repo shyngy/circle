@@ -7,27 +7,31 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 const App = (props) => {
     return (
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <div className="content">
-                    <Route path="/Profile" render={()=>{return <Profile
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <div className="content">
+                <Route path="/Profile" render={() => {
+                    return (
+                        <Profile
                             profilePage={props.state.profilePage}
-                            addPost={props.addPost}
-                            updateNewPostValue={props.updateNewPostValue}
-
-                    />}}
-                    />
-                    <Route path="/Dialogs" render={()=>{return(
+                            dispatch={props.dispatch}
+                        />)
+                }}
+                />
+                <Route path="/Dialogs" render={() => {
+                    return (
                         <Dialogs
-                            messages={props.state.messagesPage.messages}
-                            dialogs={props.state.messagesPage.dialogs} />
+                            newPostText={props.state.messagesPage.newPostText}
+                            messagesPage={props.state.messagesPage}
+                            dispatch={props.dispatch}/>
 
-                        )}}
-                    />
-                </div>
-
+                    )
+                }}
+                />
             </div>
+
+        </div>
 
     );
 

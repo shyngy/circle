@@ -12,5 +12,12 @@ const DialogsItem = (props) => {
     )
 }
 
+const UserMessages = () =>{
+    return(
+        <div>
+
+        </div>
+    )
+}
 
 export default DialogsItem

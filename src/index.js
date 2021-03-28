@@ -10,7 +10,7 @@ let renderEntireThee = state => {
     ReactDOM.render(
         <BrowserRouter>
             <App
-
+                store={store}
                 state={state}
                 dispatch={store.dispatch.bind(store)}
             />

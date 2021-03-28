@@ -1,10 +1,9 @@
 import React from 'react'
 import sty from './MyPosts.module.css'
 import Post from './Post/Post'
-import {addPostActionCreator, updateNewPostValue} from "../../../redux/state";
+import {addPostActionCreator, updateNewPostValue} from "../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
-
     let postsElements = props.posts.map((p)=>{
         return <Post name={p.message} likeCount={p.likeCount}/>
     })

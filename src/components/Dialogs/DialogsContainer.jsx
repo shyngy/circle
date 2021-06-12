@@ -3,9 +3,10 @@ import sty from './Diаlogs.module.css'
 import Message from "./Message/Message";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import { addMessageActionCreator, updateNewMessageValue } from "../../redux/dialogs-reducer";
+import Dialogs from './Dialogs';
 
 
-const Dialogs = (props) => {
+const DialogsContainer = (props) => {
   // console.log(props.messagesPage.newMessageText)
   // let dialogsElements = props.messagesPage.dialogs.map((d)=>{
   //     return <DialogsItem id={d.id} name={d.name}/>
@@ -25,7 +26,7 @@ const Dialogs = (props) => {
   //     let text = newMessageElement.current.value
   //     props.dispatch(updateNewMessageValue(text))
   // }
-  let state = props.dialogsPage
+  let state = props.store.getState().messagesPage
 
 
   let dialogsElements = state.dialogs.map(d => <DialogsItem name={d.name} id={d.id} />)
@@ -33,37 +34,20 @@ const Dialogs = (props) => {
   let newMessageElement = state.newMessageBody
 
   const onSendMessageClick = () => {
-    props.sendMessage()
+    props.store.dispatch(addMessageActionCreator())
 
   }
 
-  const addMessageValue = (e) => {
-    let body = e.target.value
-    props.updateNewMessageBody(body)
+  const addMessageValue = (body) => {
+    props.store.dispatch(updateNewMessageValue(body))
   }
-  return (
-    <div className={sty.dialogs}>
-      <div className={sty.dialogsItem}>
+  return <Dialogs updateNewMessageBody={addMessageValue}
+    sendMessage={onSendMessageClick}
+    dialogsPage={state}
+  />
 
-        {dialogsElements}
 
-
-      </div>
-
-      <div className={sty.messages}>
-        <input
-          ref={newMessageElement}
-          value={state.newMessageText}
-          onChange={addMessageValue}
-        /> <button onClick={onSendMessageClick}>add messsage</button>
-        {messagesElements}
-
-      </div>
-
-    </div>
-
-  )
 
 }
 
-export default Dialogs
+export default DialogsContainer

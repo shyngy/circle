@@ -10,9 +10,7 @@ const Navbar = () => {
           className={sty.nav__link}>profile</NavLink></li>
         <li className=""><NavLink to="/Dialogs" activeClassName={sty.acitve}
           className={sty.nav__link}>messages</NavLink></li>
-        <li className=""><span className={sty.nav__link}>news</span></li>
-        <li className=""><span className={sty.nav__link}>music</span></li>
-        <li className=""><span className={sty.nav__link}>settings</span></li>
+
       </ul>
     </nav>
   )

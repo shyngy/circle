@@ -32,11 +32,13 @@ let store = {
 
 
   },
+
   _callSubscriber() { },
 
   getState() {
     return this._state
   },
+
   subscribe(observer) {
     this._callSubscriber = observer
   },
@@ -46,11 +48,11 @@ let store = {
     this._state.messagesPage = dialogReducer(this._state.messagesPage, action)
     this._callSubscriber(this._state) // call a function after all changes
 
-  }
+  },
+
 
 }
 
-window.store = store
 
 export default store
 

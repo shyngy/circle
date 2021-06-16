@@ -1,10 +1,11 @@
-import {combineReducers, createStore} from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import profileReducer from "./profile-reducer";
 import dialogReducer from "./dialogs-reducer";
+import thunk from 'redux-thunk'
 
 let reducers = combineReducers({
-    profilePage: profileReducer,
-    messagesPage: dialogReducer
+  profilePage: profileReducer,
+  messagesPage: dialogReducer
 })
 
 let store = createStore(reducers)

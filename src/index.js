@@ -4,31 +4,20 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import React from 'react';
-import {BrowserRouter, Route} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
-let renderEntireThee = state => {
-    ReactDOM.render(
-        <BrowserRouter>
-            <App
-                store={store}
-                state={state}
-                dispatch={store.dispatch.bind(store)}
-            />
-        </BrowserRouter>,
-        document.getElementById('root')
-    );
-}
-
-renderEntireThee(store.getState())
+import { Provider } from 'react-redux'
 
 
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById('root')
+);
 
-
-store.subscribe(()=>{
-    let state = store.getState()
-    renderEntireThee(state)
-
-})
 
 
 

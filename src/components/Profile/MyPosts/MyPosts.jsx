@@ -27,7 +27,7 @@ const MyPosts = (props) => {
           onChange={textChange}
           value={props.newPostText}
           className={sty.descriptionArea} name="" id="" cols="122" rows="5" />
-        <button onClick={props.addPostValue} className={sty.btn}>Add post</button>
+        <button onClick={props.addPost} className={sty.btn}>Add post</button>
       </div>
       {postsElements}
     </div>

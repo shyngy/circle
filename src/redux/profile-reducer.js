@@ -32,7 +32,6 @@ const profileReducer = (state = initialState, action) => {
       }
 
     case UPDATE_NEW_POST_VALUE:
-
       return {
         ...state,
         newPostText: action.text

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { followAC, setCurrentPageAC, setUsersAC, unfollowAC, setUsersTotalCountAC, setLoadedAC } from "../../redux/users-reducer";
+import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, setLoaded } from "../../redux/users-reducer";
 import Users from '../Users/Users'
 import axios from 'axios';
 import React from "react";
@@ -61,30 +61,41 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     follow: (userId) => {
+//       dispatch(followAC(userId))
+//     },
+//     unfollow: (userId) => {
+//       dispatch(unfollowAC(userId))
+//     },
+//     setUsers: (users) => {
+//       // dispatch({ type: "SET-LOADED", load: false }) ошибка вызова 
+//       dispatch(setUsersAC(users))
+//     },
+//     setCurrentPage: (number) => {
+//       dispatch(setCurrentPageAC(number))
+//     },
+//     setTotalUsersCount: (totalCount) => {
+//       dispatch(setUsersTotalCountAC(totalCount))
+//     },
+//     setLoaded: (isLoaded) => {
+//       dispatch(setLoadedAC(isLoaded))
+//     }
+//   }
+
+
+// }
+
+const mapDispatchToProps = () => {
   return {
-    follow: (userId) => {
-      dispatch(followAC(userId))
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowAC(userId))
-    },
-    setUsers: (users) => {
-      // dispatch({ type: "SET-LOADED", load: false }) ошибка вызова 
-      dispatch(setUsersAC(users))
-    },
-    setCurrentPage: (number) => {
-      dispatch(setCurrentPageAC(number))
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setUsersTotalCountAC(totalCount))
-    },
-    setLoaded: (isLoaded) => {
-      dispatch(setLoadedAC(isLoaded))
-    }
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    setLoaded
   }
-
-
 }
 
 
@@ -93,4 +104,4 @@ usersContainer.propTypes = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(usersContainer)
+export default connect(mapStateToProps, mapDispatchToProps())(usersContainer)

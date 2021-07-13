@@ -3,7 +3,7 @@ import sty from '../Diаlogs.module.css'
 import { NavLink } from "react-router-dom";
 
 const DialogsItem = (props) => {
-  let link = `diologs/${props.id}`
+  let link = `/diologs/${props.id}`
   return (
 
     <div>

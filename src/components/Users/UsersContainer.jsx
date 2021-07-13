@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, setLoaded } from "../../redux/users-reducer";
+import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, setLoaded, currentUserId } from "../../redux/users-reducer";
 import Users from '../Users/Users'
 import axios from 'axios';
 import React from "react";
@@ -14,7 +14,6 @@ class usersContainer extends React.Component {
     // this.props.setLoaded(false)
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then((response) => {
       this.props.setUsers(response.data.items);
-      console.log(response.data)
       this.props.setTotalUsersCount(response.data.totalCount)
 
     })
@@ -41,6 +40,7 @@ class usersContainer extends React.Component {
         users={this.props.users}
         follow={this.props.follow}
         unfollow={this.props.unfollow}
+        currentUserId={this.props.currentUserId}
       /> :
         <Loading />
     }
@@ -87,15 +87,14 @@ const mapStateToProps = (state) => {
 
 // }
 
-const mapDispatchToProps = () => {
-  return {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    setLoaded
-  }
+const mapDispatchToProps = {
+  follow,
+  unfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  setLoaded,
+  currentUserId
 }
 
 
@@ -104,4 +103,4 @@ usersContainer.propTypes = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps())(usersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(usersContainer)

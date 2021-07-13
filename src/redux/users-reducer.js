@@ -4,13 +4,16 @@ const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE"
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT'
 const SET_LOADED = "SET-LOADED"
+const CURRENT_USER_ID = "CURRENT-USER-ID"
 const initialState = {
   users: [
   ],
   pageSize: 5,
   totalUsersCount: 19,
   currentPage: 1,
-  isLoaded: false
+  isLoaded: false,
+  userId: 3
+
 }
 
 
@@ -61,6 +64,9 @@ const usersReducer = (state = initialState, action) => {
 
       return { ...state, isLoaded: action.isLoaded }
     }
+    case CURRENT_USER_ID: {
+      return { ...state, userId: action.userId }
+    }
 
     default:
       return state
@@ -73,4 +79,5 @@ export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_COUNT, totalUsersCount })
 export const setLoaded = (isLoaded) => ({ type: SET_LOADED, isLoaded })
+export const currentUserId = (userId) => ({ type: CURRENT_USER_ID, userId })
 export default usersReducer

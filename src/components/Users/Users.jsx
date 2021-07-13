@@ -1,7 +1,8 @@
 
 import React from 'react'
-
-const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users, onPageChange }) => {
+import { NavLink } from 'react-router-dom'
+import userPhoto from '../../assets/img/user1.png'
+const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users, onPageChange, currentUserId }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize)
   let pages = []
   for (let i = 1; i <= pagesCount; i++) {
@@ -10,18 +11,19 @@ const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users
 
   return (
     <>
-      {pages.map(page => {
+      <div className="pages">{pages.map(page => {
         return <span onClick={() => { onPageChange(page) }} key={page} className={currentPage === page ? 'active__page' : ''}>{page}</span>
       }
 
-      )}
+      )}</div>
       {
         users.map((user, index) => {
+
           return (
 
             <span key={index}>
               <section>
-                <img src={user.img} alt="" style={{ width: "100px", height: "" }} />
+                <NavLink onClick={() => { currentUserId(user.id) }} to={`profile/${user.id}`}><img src={user.photos.small != null ? user.photos.small : userPhoto} alt="" style={{ width: "100px", height: "" }} /></NavLink>
                 <div className="name">
                   {user.name}
                 </div>

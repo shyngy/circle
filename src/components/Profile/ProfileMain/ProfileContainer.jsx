@@ -9,7 +9,7 @@ import Profile from './Profile'
 class ProfileContainer extends Component {
 
   componentDidMount() {
-    console.log(this.props.profile);
+
     let userId = this.props.match.params.id
     if (!userId) {
       userId = 2

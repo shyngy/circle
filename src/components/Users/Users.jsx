@@ -1,4 +1,6 @@
 
+import { logDOM } from '@testing-library/react'
+import axios from 'axios'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import userPhoto from '../../assets/img/user1.png'
@@ -28,8 +30,38 @@ const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users
                   {user.name}
                 </div>
                 {user.followed ?
-                  <button onClick={() => { unfollow(user.id) }}>unfollow</button>
-                  : <button onClick={() => { follow(user.id) }}>follow</button>}
+                  <button onClick={() => {
+                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                      withCredentials: true,
+                      headers: {
+                        "API-KEY": "6b39d79e-a55d-40f5-92f2-f977a51d6e2f"
+                      }
+
+                    })
+                      .then((response) => {
+                        if (response.data.resultCode === 0) {
+                          unfollow(user.id)
+                        }
+                      })
+                  }}>unfollow</button>
+                  : <button onClick={() => {
+
+                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                      {},
+                      {
+                        withCredentials: true,
+                        headers: {
+                          "API-KEY": "6b39d79e-a55d-40f5-92f2-f977a51d6e2f"
+                        }
+                      })
+                      .then((response) => {
+                        if (response.data.resultCode === 0) {
+                          follow(user.id)
+                        }
+                      })
+
+                  }
+                  }>follow</button>}
               </section>
             </span>
 

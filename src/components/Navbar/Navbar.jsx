@@ -1,5 +1,5 @@
-import React from 'react'
-import sty from './Navbar.module.css'
+import React from 'react';
+import sty from './Navbar.module.css';
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -15,7 +15,7 @@ const Navbar = () => {
 
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

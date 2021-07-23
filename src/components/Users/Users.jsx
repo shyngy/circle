@@ -1,23 +1,23 @@
+import axios from 'axios';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import userPhoto from '../../assets/img/user1.png';
 
-import { logDOM } from '@testing-library/react'
-import axios from 'axios'
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import userPhoto from '../../assets/img/user1.png'
 const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users, onPageChange, currentUserId }) => {
-  let pagesCount = Math.ceil(totalUsersCount / pageSize)
-  let pages = []
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i)
-  }
+  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+  let pages = [];
 
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
+  };
+  
   return (
     <>
       <div className="pages">{pages.map(page => {
         return <span onClick={() => { onPageChange(page) }} key={page} className={currentPage === page ? 'active__page' : ''}>{page}</span>
       }
-
-      )}</div>
+      )}
+      </div>
       {
         users.map((user, index) => {
 
@@ -40,7 +40,7 @@ const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users
                     })
                       .then((response) => {
                         if (response.data.resultCode === 0) {
-                          unfollow(user.id)
+                          unfollow(user.id);
                         }
                       })
                   }}>unfollow</button>
@@ -56,10 +56,9 @@ const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users
                       })
                       .then((response) => {
                         if (response.data.resultCode === 0) {
-                          follow(user.id)
+                          follow(user.id);
                         }
-                      })
-
+                      });
                   }
                   }>follow</button>}
               </section>
@@ -70,11 +69,8 @@ const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users
         )
       }
     </>
-  )
-}
+  );
+};
 
 
-
-
-
-export default Users
+export default Users;

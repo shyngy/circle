@@ -1,6 +1,8 @@
-const ADD_POST = 'ADD-POST'
+const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE';
-const SET_USER_PROFILE = 'SET-USER-PROFILE'
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
+
+
 let initialState = {
   posts: [
     { id: 1, message: 'hello world', likeCount: 31 },
@@ -9,27 +11,25 @@ let initialState = {
   newPostText: 'typing ',
   profile: null,
 
-}
+};
 
 const profileReducer = (state = initialState, action) => {
-  console.log(state.profile);
+  
   switch (action.type) {
 
     case ADD_POST:
 
-      const idUser = state.posts.length + 1
+      const idUser = state.posts.length + 1;
 
-      const likeCount = (Math.random() * 10).toFixed(0)
-      const text = state.newPostText
+      const likeCount = (Math.random() * 10).toFixed(0);
+      const text = state.newPostText;
       return {
         ...state,
         posts: [...state.posts,
         { id: idUser, message: text, likeCount: +likeCount },
 
         ],
-
         newPostText: ''
-
 
       }
 
@@ -37,20 +37,21 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         newPostText: action.text
-      }
+      };
     case SET_USER_PROFILE:
       return {
         ...state,
         profile: action.profile
 
-      }
+      };
     default:
       return state
-  }
-}
+  };
+};
 
-export let setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
-export let addPostActionCreator = () => ({ type: ADD_POST })
-export let updateNewPostValue = text => ({ type: UPDATE_NEW_POST_VALUE, text: text })
 
-export default profileReducer
+export let setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+export let addPostActionCreator = () => ({ type: ADD_POST });
+export let updateNewPostValue = text => ({ type: UPDATE_NEW_POST_VALUE, text: text });
+
+export default profileReducer;

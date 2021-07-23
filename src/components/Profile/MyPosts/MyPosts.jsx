@@ -1,22 +1,22 @@
-import React from 'react'
-import sty from './MyPosts.module.css'
-import Post from './Post/Post'
+import React from 'react';
+import sty from './MyPosts.module.css';
+import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
   console.log(props.updateNewPostText);
   let postsElements = props.posts.map((p, i) => {
     return <Post name={p.message} key={i} likeCount={Number(p.likeCount)} />
-  })
+  });
 
-  let newPostElement = React.createRef()
+  let newPostElement = React.createRef();
 
 
 
   let textChange = () => {
-    let text = newPostElement.current.value
-    props.updateNewPostText(text)
-  }
+    let text = newPostElement.current.value;
+    props.updateNewPostText(text);
+  };
 
 
   return (
@@ -31,8 +31,7 @@ const MyPosts = (props) => {
       </div>
       {postsElements}
     </div>
-  )
+  );
 
-}
-
-export default MyPosts
+};
+export default MyPosts;

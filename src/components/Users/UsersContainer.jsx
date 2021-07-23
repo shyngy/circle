@@ -1,34 +1,31 @@
 import { connect } from "react-redux";
 import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, setLoaded, currentUserId } from "../../redux/users-reducer";
-import Users from '../Users/Users'
+import Users from '../Users/Users';
 import axios from 'axios';
 import React from "react";
 import Loading from "../Loading";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { getUsers } from "../../API";
 
 class usersContainer extends React.Component {
-
-
-
   componentDidMount() {
-    // this.props.setLoaded(false)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, { withCredentials: true }).then((response) => {
-      this.props.setUsers(response.data.items);
-      this.props.setTotalUsersCount(response.data.totalCount)
+   
+    getUsers().then((response) => {
+      console.log(response);
+      this.props.setUsers(response.items);
+      this.props.setTotalUsersCount(response.totalCount);
+    });
 
-    })
-
-  }
+  };
   onPageChange = (pageNumber) => {
-    this.props.setLoaded(false)
-    this.props.setCurrentPage(pageNumber)
+    this.props.setLoaded(false);
+    this.props.setCurrentPage(pageNumber);
+
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, { withCredentials: true }).then((response) => {
       this.props.setUsers(response.data.items);
+    });
 
-
-    })
-
-  }
+  };
   render() {
 
     return <> {
@@ -46,46 +43,18 @@ class usersContainer extends React.Component {
     }
     </>
 
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => {
-
   return {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isLoaded: state.usersPage.isLoaded
-
-  }
-}
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     follow: (userId) => {
-//       dispatch(followAC(userId))
-//     },
-//     unfollow: (userId) => {
-//       dispatch(unfollowAC(userId))
-//     },
-//     setUsers: (users) => {
-//       // dispatch({ type: "SET-LOADED", load: false }) ошибка вызова 
-//       dispatch(setUsersAC(users))
-//     },
-//     setCurrentPage: (number) => {
-//       dispatch(setCurrentPageAC(number))
-//     },
-//     setTotalUsersCount: (totalCount) => {
-//       dispatch(setUsersTotalCountAC(totalCount))
-//     },
-//     setLoaded: (isLoaded) => {
-//       dispatch(setLoadedAC(isLoaded))
-//     }
-//   }
-
-
-// }
+    isLoaded: state.usersPage.isLoaded,
+  };
+};
 
 const mapDispatchToProps = {
   follow,
@@ -95,12 +64,11 @@ const mapDispatchToProps = {
   setTotalUsersCount,
   setLoaded,
   currentUserId
-}
+};
 
 
 usersContainer.propTypes = {
   isLoaded: PropTypes.bool.isRequired,
+};
 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(usersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(usersContainer);

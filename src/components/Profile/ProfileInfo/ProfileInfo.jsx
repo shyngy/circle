@@ -1,11 +1,11 @@
-import React from 'react'
-import Loading from '../../Loading'
-import sty from './ProfileInfo.module.css'
+import React from 'react';
+import Loading from '../../Loading';
+import sty from './ProfileInfo.module.css';
 
 const ProfileInfo = ({ profile }) => {
   if (!profile) {
     return <Loading />
-  }
+  };
   return (
     <div>
       <span>{profile.fullName}</span>
@@ -16,9 +16,9 @@ const ProfileInfo = ({ profile }) => {
         ava + description
       </div>
     </div>
-  )
-}
-export default ProfileInfo
+  );
+};
+export default ProfileInfo;
 
 
 

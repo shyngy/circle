@@ -1,6 +1,7 @@
 import profileReducer from "./profile-reducer";
 import dialogReducer from "./dialogs-reducer";
 
+
 let store = {
   _state: {
     profilePage:
@@ -51,10 +52,10 @@ let store = {
   },
 
 
-}
+};
 
 
-export default store
+export default store;
 
 
 

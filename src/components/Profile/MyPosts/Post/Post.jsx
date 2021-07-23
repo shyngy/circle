@@ -1,5 +1,5 @@
-import React from 'react'
-import sty from './Post.module.css'
+import React from 'react';
+import sty from './Post.module.css';
 
 const Post = (props) => {
     return (
@@ -13,7 +13,7 @@ const Post = (props) => {
                 {props.likeCount} like
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Post
+export default Post;

@@ -1,12 +1,14 @@
-import axios from 'axios';
+
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import userPhoto from '../../assets/img/user1.png';
 
-const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users, onPageChange, currentUserId }) => {
+const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users, onPageChange, currentUserId,followingInProgress,toggleFollowingProgress }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
-
+  console.log(followingInProgress);
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   };
@@ -30,36 +32,12 @@ const Users = ({ totalUsersCount, pageSize, currentPage, unfollow, follow, users
                   {user.name}
                 </div>
                 {user.followed ?
-                  <button onClick={() => {
-                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                      withCredentials: true,
-                      headers: {
-                        "API-KEY": "6b39d79e-a55d-40f5-92f2-f977a51d6e2f"
-                      }
-
-                    })
-                      .then((response) => {
-                        if (response.data.resultCode === 0) {
-                          unfollow(user.id);
-                        }
-                      })
-                  }}>unfollow</button>
-                  : <button onClick={() => {
-
-                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                      {},
-                      {
-                        withCredentials: true,
-                        headers: {
-                          "API-KEY": "6b39d79e-a55d-40f5-92f2-f977a51d6e2f"
-                        }
-                      })
-                      .then((response) => {
-                        if (response.data.resultCode === 0) {
-                          follow(user.id);
-                        }
-                      });
-                  }
+                  <button
+                    disabled={followingInProgress.some(id=>id === user.id)}
+                   onClick={() => {unfollow(user.id)}}>unfollow</button>
+                  : <button
+                    disabled={followingInProgress.some(id=>id === user.id)}
+                    onClick={() => {follow(user.id)}
                   }>follow</button>}
               </section>
             </span>

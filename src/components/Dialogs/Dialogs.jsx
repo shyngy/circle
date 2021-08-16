@@ -4,6 +4,7 @@ import Message from "./Message/Message";
 import DialogsItem from "./DialogsItem/DialogsItem";
 
 
+
 const Dialogs = (props) => {
   console.log(props);
   let state = props.dialogsPage;
@@ -20,6 +21,7 @@ const Dialogs = (props) => {
     let body = e.target.value;
     props.updateNewMessageBody(body);
   };
+   
   return (
     <div className={sty.dialogs}>
       <div className={sty.dialogsItem}>

@@ -2,7 +2,11 @@ import React from 'react';
 import sty from './Navbar.module.css';
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({dispatchDownDate}) => {
+  React.useEffect(()=>{
+    dispatchDownDate(['d', 's'])
+  },[])
+  
   return (
     <nav className={sty.nav}>
       <ul>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Loading from '../../Loading';
+import ProfileStatus from '../../ProfileStatus';
 import sty from './ProfileInfo.module.css';
 
 const ProfileInfo = ({ profile }) => {
@@ -8,6 +9,7 @@ const ProfileInfo = ({ profile }) => {
   };
   return (
     <div>
+      <ProfileStatus/>
       <span>{profile.fullName}</span>
       <img className={sty.content_img}
         alt="panorama"
